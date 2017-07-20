@@ -29,6 +29,14 @@ body {
     font-weight: 700;
 }
 
+/*h1,h3 {
+    color: white;
+}*/
+
+h2 {
+    color: #257dbb;
+}
+
 /* Custom Button Styles */
 
 .btn-dark {
@@ -173,6 +181,7 @@ hr.small {
 
 .services {
     padding: 50px 0;
+    color: white;
 }
 
 .service-item {
@@ -251,10 +260,9 @@ footer {
 }
 
 .bg-second {
-    background-color: grey;
+    background-color: #C1E2B3;
 }
 
 .bg-third {
-    background-color: green;
+    background-color: #dcd74c;
 }
-
