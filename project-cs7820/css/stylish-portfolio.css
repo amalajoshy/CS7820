@@ -163,9 +163,9 @@ hr.small {
     text-decoration-color: white;
 }
 
-/* About */
+/* House median sale price */
 
-.about {
+.house-median-price {
     padding: 50px 0;
 }
 
@@ -249,3 +249,12 @@ footer {
   bottom: 5px;
   right: 5px;
 }
+
+.bg-second {
+    background-color: grey;
+}
+
+.bg-third {
+    background-color: green;
+}
+
