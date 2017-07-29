@@ -10,6 +10,9 @@
     <meta name="author" content="">
 
     <title>Housing Viz Project</title>
+    <script type="text/javascript">
+        window._consoleLog = console.log; // grab it before it gets overwritten
+    </script>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <script src="http://d3js.org/d3.v3.js"></script>
@@ -40,6 +43,7 @@
     </style>
     <script type="text/javascript">
         function iframeLoaded() {
+            _consoleLog('iframeLoaded');
             var iFrameID = document.getElementById('crime-map');
             if(iFrameID) {
                 // here you can make the height, I delete it first, then I make it again

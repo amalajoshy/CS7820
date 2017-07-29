@@ -47,7 +47,6 @@
             d.y = +d.y;
             d.yhat = +d.yhat;
         });
-        console.log('scatterData', data);
 
         var line = d3.svg.line()
             .x(function(d) {

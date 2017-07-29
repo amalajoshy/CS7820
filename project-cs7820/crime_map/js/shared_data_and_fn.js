@@ -44,7 +44,6 @@
     }
     
     function updateSelectedDescription(d) {
-        console.log('d', d);
         var zhvi = d.zhvi;
         var cost = zhvi !== -1 ? '$' + zhvi.toLocaleString() : 'Not available';
         var showCrimes = calculateCurrentShowCrimes(d);

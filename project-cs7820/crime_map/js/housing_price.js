@@ -52,7 +52,6 @@
     function fillFn(d){
         var zhvi = d.properties.zhvi;
         if (!zhvi) {
-            console.log('bad zhvi', zhvi)
         } else if (zhvi === -1) {
             return 'white';
         }

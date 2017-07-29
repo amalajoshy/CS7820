@@ -40,8 +40,6 @@
 	var dotLayer;
 
 	function renderFilterPoliceDotsUI(data) {
-		console.log('data', data);
-
 		var crimeCounts = {};
 		consts.ALL_CRIME_TYPES.forEach(function (crimeType) {
 			crimeCounts[crimeType] = 0;
@@ -122,7 +120,6 @@
 
 			crimeTypes.forEach(function(crime_type) {
 				if (crime_type == '') {
-					console.log('badCrimeType', crime_type);
 				}
 				var option = document.createElement('input');
 				options.push(option);

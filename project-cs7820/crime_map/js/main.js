@@ -51,5 +51,38 @@
 	});
 
 
+	var RESIZE_WAIT_PERIOD = 500;
+	var mainContainer = $('#main-container');
+	var prevHeight = mainContainer.height();
+	var prevWidth = mainContainer.width();
+	function checkForResizeLoop() {
+		var currHeight = mainContainer.height();
+		var currWidth = mainContainer.width();
+		console.log(`loop ${prevHeight} === ${currHeight}`);
+		if ((currHeight !== prevHeight) || (currWidth !== prevWidth) &&
+			window.parent && window.parent.iframeLoaded) {
+			window.parent.iframeLoaded();
+		}
+		prevHeight = currHeight;
+		prevWidth = currWidth;
+		setTimeout(checkForResizeLoop, RESIZE_WAIT_PERIOD);
+	}
+	checkForResizeLoop();
+
+	// var waitingForResize = false;
+	// $(window).resize(function() {
+	// 	console.log('resize, waiting?', waitingForResize)
+	// 	var RESIZE_WAIT_PERIOD = 500;
+	// 	if (!waitingForResize && window.parent && window.parent.iframeLoaded) {
+	// 		setTimeout(function () {
+	// 			console.log('setTimeout');
+	// 			window.parent.iframeLoaded();
+	// 			setTimeout(function () {
+					// waitingForResize = false;
+				// }, 50);
+			// }, RESIZE_WAIT_PERIOD);
+		// }
+		// waitingForResize = true;
+    // });
 
 })();
