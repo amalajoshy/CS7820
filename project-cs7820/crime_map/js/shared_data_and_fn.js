@@ -54,9 +54,9 @@
         var htmlList = '<ul>';
         htmlList += '<li>' + 'Median Zhvi: ' + cost + '</li>';
         htmlList += '<li>' + 'Total Number of Crimes: ' + d.NumCrimes + '</li>';
-        htmlList += '<li>' + 'Displayed Number of Crimes: ' + showCrimes + '</li>';
-        htmlList += '<li>' + 'Crime / Area: ' + crimeOverArea + '</li>';
-        htmlList += '<li>' + 'Displayed Crime / Area: ' + shownCrimeOverArea + '</li>';
+        htmlList += '<li>' + 'Selected Number of Crimes: ' + showCrimes + '</li>';
+        htmlList += '<li>' + 'Total Crime / Area: ' + crimeOverArea + '</li>';
+        htmlList += '<li>' + 'Selected Crime / Area: ' + shownCrimeOverArea + '</li>';
         // htmlList += '<li>' + 'Relative Crime by Area: ' + d.CrimeOverArea + '</li>';
         htmlList += '</ul>';
         $infoDesc.html(htmlList);
