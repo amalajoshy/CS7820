@@ -51,22 +51,36 @@
 			crimeCounts[crime] += 1;
 		});
 
-		var rootEl = document.getElementById('crime-types-ui');
+		var rootEl = document.getElementById('crime-accordion');
 
 		CRIME_TYPE_GROUPED.forEach(function (crimeCategory) {
 			var categoryName = crimeCategory.name;
 			var crimeTypes = crimeCategory.crime;
 			var crimeGroupContainer = document.createElement('div');
-			var crimeGroupLabel = document.createElement('label');
-			var groupCrimeCount =getGroupCrimeCount(crimeCounts, crimeTypes);
-			crimeGroupLabel.innerText = categoryName + ' (' + groupCrimeCount + ')';
-			crimeGroupLabel.className += ' crime-type-header';
-			crimeGroupContainer.appendChild(crimeGroupLabel);
-			var crimeGroupTypesContainer = document.createElement('div');
-			crimeGroupTypesContainer.className += ' crime-group-types';
+			crimeGroupContainer.className += ' card';
+			var crimeGroupHeader = document.createElement('div');
+			var groupCrimeCount = getGroupCrimeCount(crimeCounts, crimeTypes);
+			// crimeGroupHeader.innerText = categoryName + ' (' + groupCrimeCount + ')';
+			var crimeGroupHeaderCategoryId = crimeTypeToClass(categoryName);
+			crimeGroupHeader.innerHTML =
+				`<h5 class="mb-0">
+					<a data-toggle="collapse" data-parent="#crime-accordion" 
+					   href="#${crimeGroupHeaderCategoryId}" 
+					   aria-expanded="true" aria-controls="${crimeGroupHeaderCategoryId}">
+						${categoryName} (${groupCrimeCount})
+					</a>
+				</h5>`;
+			crimeGroupHeader.className += ' card-header';
+			crimeGroupHeader.setAttribute('role', 'tab');
+			crimeGroupContainer.appendChild(crimeGroupHeader);
+			// var crimeGroupTypesContainer = document.createElement('div');
+			// crimeGroupTypesContainer.className += ' crime-group-types';
 			var options = [];
 
 			var groupOptions = document.createElement('small');
+			var displaySpan = document.createElement('span')
+			displaySpan.innerText = 'Display:';
+			groupOptions.appendChild(displaySpan);
 
 			var checkAllLink = document.createElement('a');
 			checkAllLink.innerText = '(all)';
@@ -95,7 +109,16 @@
 			groupOptions.appendChild(checkAllLink);
 			groupOptions.appendChild(uncheckAllLink);
 
-			crimeGroupContainer.appendChild(groupOptions);
+			// crimeGroupContainer.appendChild(groupOptions);
+            //
+			var crimeTypeListContainer = document.createElement('div');
+			crimeTypeListContainer.className += ' collapse';
+			crimeTypeListContainer.id = crimeGroupHeaderCategoryId;
+			crimeTypeListContainer.setAttribute('role', 'tabpanel');
+			var crimeTypeListContainerCardBlock = document.createElement('div');
+			crimeTypeListContainerCardBlock.className += ' card-block';
+			crimeTypeListContainerCardBlock.appendChild(groupOptions);
+			crimeTypeListContainer.appendChild(crimeTypeListContainerCardBlock);
 
 			crimeTypes.forEach(function(crime_type) {
 				if (crime_type == '') {
@@ -105,6 +128,7 @@
 				options.push(option);
 				var label = document.createElement('label');
 				var crimeTypeContainer = document.createElement('div');
+
 				crimeTypeContainer.appendChild(option);
 				crimeTypeContainer.appendChild(label);
 				var crimeCount = crimeCounts[crime_type];
@@ -128,10 +152,11 @@
 					crimeHousingScatter.drawScatter();
 
 				});
-				crimeGroupTypesContainer.appendChild(crimeTypeContainer);
+				crimeTypeListContainerCardBlock.appendChild(crimeTypeContainer);
 			});
-			
-			crimeGroupContainer.appendChild(crimeGroupTypesContainer);
+
+			crimeGroupContainer.appendChild(crimeTypeListContainer);
+			// crimeGroupContainer.appendChild(crimeGroupTypesContainer);
 			rootEl.appendChild(crimeGroupContainer);
 			
 		});

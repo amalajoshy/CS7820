@@ -28,14 +28,19 @@
                 d: d,
                 shownCrimes: calculateCurrentShowCrimes(d),
                 zhvi: d.zhvi,
-                crimeOverArea: calculateCrimesByArea(d),
+                crimeOverArea: calculateShownCrimesByArea(d),
             };
         })
     }
     
-    function calculateCrimesByArea(d) {
+    function calculateShownCrimesByArea(d) {
         const SCALING_FACTOR = 1./100000;
         return calculateCurrentShowCrimes(d) / d['Area'] * SCALING_FACTOR
+    }
+    
+    function calculateCrimesByArea(d) {
+        const SCALING_FACTOR = 1./100000;
+        return d['Crimes'].length / d['Area'] * SCALING_FACTOR
     }
     
     function updateSelectedDescription(d) {
@@ -43,20 +48,20 @@
         var zhvi = d.zhvi;
         var cost = zhvi !== -1 ? '$' + zhvi.toLocaleString() : 'Not available';
         var showCrimes = calculateCurrentShowCrimes(d);
+        var shownCrimeOverArea = calculateShownCrimesByArea(d).toFixed(4);
         var crimeOverArea = calculateCrimesByArea(d).toFixed(4);
         $infoName.text(d.Name);
 
         var htmlList = '<ul>';
         htmlList += '<li>' + 'Median Zhvi: ' + cost + '</li>';
         htmlList += '<li>' + 'Total Number of Crimes: ' + d.NumCrimes + '</li>';
-        htmlList += '<li>' + 'Number of Crimes: ' + showCrimes + '</li>';
-        htmlList += '<li>' + 'Relative Crime Over Area: ' + crimeOverArea + '</li>';
+        htmlList += '<li>' + 'Displayed Number of Crimes: ' + showCrimes + '</li>';
+        htmlList += '<li>' + 'Crime / Area: ' + crimeOverArea + '</li>';
+        htmlList += '<li>' + 'Displayed Crime / Area: ' + shownCrimeOverArea + '</li>';
         // htmlList += '<li>' + 'Relative Crime by Area: ' + d.CrimeOverArea + '</li>';
         htmlList += '</ul>';
-        $infoDesc.html(htmlList);    
+        $infoDesc.html(htmlList);
     }
-
-
     
     var sharedData = window.sharedData = {};
     sharedData.crimeUI = {
@@ -64,7 +69,7 @@
     };
     sharedData.calculateCurrentShowCrimes = calculateCurrentShowCrimes;
     sharedData.calculateCurrentShowCrimesAll = calculateCurrentShowCrimesAll;
-    sharedData.calculateCrimesByArea = calculateCrimesByArea;
+    sharedData.calculateCrimesByArea = calculateShownCrimesByArea;
     sharedData.updateSelectedDescription = updateSelectedDescription;
     sharedData.resetMapColors = function () {}; // gets sets by housing_price.js
     
