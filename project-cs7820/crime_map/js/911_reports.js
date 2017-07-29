@@ -183,7 +183,7 @@
 				return projection(loc)[1];
 			})
 			.attr('r', '1px')
-			.attr('fill', 'blue')
+			.attr('fill', 'red')
 	};
 
 
