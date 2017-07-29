@@ -32,6 +32,24 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <!-- START CRIME MAP STUFF -->
+    <style type="text/css">
+        #crime-map {
+            width: 100%;
+        }
+    </style>
+    <script type="text/javascript">
+        function iframeLoaded() {
+            var iFrameID = document.getElementById('crime-map');
+            if(iFrameID) {
+                // here you can make the height, I delete it first, then I make it again
+                iFrameID.height = "";
+                iFrameID.height = iFrameID.contentWindow.document.body.scrollHeight + "px";
+            }
+        }
+    </script>
+    <!-- END CRIME MAP STUFF -->
+
 </head>
 
 <body>
@@ -164,44 +182,19 @@
                 <div class="col-lg-10 col-lg-offset-1 text-center">
                     <h2>Visulization 3</h2>
                     <hr class="small">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="img/portfolio-1.jpg">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="img/portfolio-2.jpg">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="img/portfolio-3.jpg">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="img/portfolio-4.jpg">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.row (nested) -->
-                    <a href="#" class="btn btn-dark">View More Items</a>
-                </div>
+               </div>
                 <!-- /.col-lg-10 -->
             </div>
             <!-- /.row -->
         </div>
         <!-- /.container -->
+
+        <iframe
+                id="crime-map"
+                src="crime_map/index.html"
+                frameborder="0"
+                onload="iframeLoaded();"
+        ></iframe>
     </section>
 
     <!-- Services -->
