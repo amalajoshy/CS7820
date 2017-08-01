@@ -5,6 +5,7 @@
 (function () {
     var $infoName = $('#info-name');
     var $infoDesc = $('#info-desc');
+    var SCALING_FACTOR = window.consts.SCALING_FACTOR;
     var consts = window.consts;
     var CRIME_TYPES = consts.ALL_CRIME_TYPES;
 	var uiShowCrimes = {};
@@ -34,12 +35,10 @@
     }
     
     function calculateShownCrimesByArea(d) {
-        const SCALING_FACTOR = 1./100000;
         return calculateCurrentShowCrimes(d) / d['Area'] * SCALING_FACTOR
     }
     
     function calculateCrimesByArea(d) {
-        const SCALING_FACTOR = 1./100000;
         return d['Crimes'].length / d['Area'] * SCALING_FACTOR
     }
     
