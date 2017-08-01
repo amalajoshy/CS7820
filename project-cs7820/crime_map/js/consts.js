@@ -83,6 +83,7 @@
         // Center the Map in Seattle
         .center([-122.32, 47.605])
         .translate([consts.width / 2, consts.height / 2]);
-        
+
+	consts.SCALING_FACTOR = 1./100000;
 })();
 
