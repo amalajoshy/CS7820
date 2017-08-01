@@ -23,6 +23,7 @@
     <!-- Custom CSS -->
     <link href="css/stylish-portfolio.css" rel="stylesheet">
     <link href="css/house-median-price.css" rel="stylesheet">
+    <link href='neighborhood_analysis/style.css' rel='stylesheet'>
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -49,6 +50,18 @@
                 // here you can make the height, I delete it first, then I make it again
                 iFrameID.height = "";
                 iFrameID.height = iFrameID.contentWindow.document.body.scrollHeight + "px";
+                console.log(iFrameID.height);
+            }
+        }
+
+        function viz2IframeLoaded() {
+            var iFrameID = document.getElementById('neighborhoodAnalysis');
+            if(iFrameID) {
+                // here you can make the height, I delete it first, then I make it again
+                iFrameID.height = "600";
+                iFrameID.width = "1000"
+                // iFrameID.height = iFrameID.contentWindow.document.body.scrollHeight + "px";
+                _consoleLog(iFrameID.height);
             }
         }
     </script>
@@ -134,15 +147,22 @@
 
     <!-- Visulization 2 -->
     <section id="visulization2" class="portfolio bg-second">
-        <div id="neighborhoodAnalysis" class="container">
+        <!-- <div id="neighborhoodAnalysis" class="container">
             <form name="myform" onSubmit="return handleClick()">
                 <input type="text" id="myVal" placeholder="Search Neighborhood&hellip;">
                 <input name="Submit"  type="submit" value="Search" >
             </form>
             <script type='text/javascript' src='neighborhood_analysis/script.js'></script>
-        </div>
+        </div> -->
         <!-- /.container -->
+        <iframe
+                id="neighborhoodAnalysis"
+                src="neighborhood_analysis/neighborhood_analysis.html"
+                frameborder="0"
+                onload="viz2IframeLoaded();"
+        ></iframe>
     </section>
+
 
      <!-- Visulization 3 -->
     <section id="visulization3" class="portfolio bg-third">

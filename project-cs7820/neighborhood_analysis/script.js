@@ -1,3 +1,4 @@
+console.log('hello');
 d3.selection.prototype.moveToFront = function() {
   return this.each(function(){
   this.parentNode.appendChild(this);
@@ -24,8 +25,9 @@ var ySelectData = [ {"text": "HousingPrice" },
                      {"text": "MedianRent" }]
 
 // Variables
-var body = d3.select('#neighborhoodAnalysis');
+var body = d3.select('body');
 console.log(body);
+
 var margin = { top: 50, right: 50, bottom: 50, left: 55 };
 var h = 500 - margin.top - margin.bottom;
 var w = 960 - margin.left - margin.right;
@@ -66,12 +68,11 @@ function handleClick(event) {
 }
 
 
-d3.csv('neighborhood_analysis/neighborhood_data.csv',function (data) {
+d3.csv('neighborhood_data.csv',function (data) {
   // console.log(data);
   // CSV section
   
   // Select X-axis Variable
-  console.log(body);
   var span = body.append('span')
     .text('Select X-Axis variable: ')
   var xInput = body.append('select')
