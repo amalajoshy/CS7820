@@ -1,8 +1,9 @@
-var margin = {top: 20, right: 200, bottom: 100, left: 200},
+var margin = {top: 20, right: 200, bottom: 100, left: 100},
     margin2 = {top: 430, right: 10, bottom: 20, left: 40 },
     width = 1100 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom,
-    height2 = 500 - margin2.top - margin2.bottom;
+    height2 = 500 - margin2.top - margin2.bottom,
+    svg_width = 1500;
 
     var parseDate = d3.time.format("%Y-%m").parse;
     var bisectDate = d3.bisector(function(d) { return d.date; }).right;
@@ -38,7 +39,7 @@ var extentY; // Defined later to update yAxis
 
 var svg = d3.select("#hmp")
   .append("svg")
-  .attr("width", width + margin.left + margin.right)
+  .attr("width", svg_width)
   .attr("height", height + margin.top + margin.bottom)
   .append("g")
   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -120,6 +121,9 @@ d3.csv("data_msp.csv", function(error, data) {
     }
   };
 
+  var neighbourhoodMap = {};
+
+
   var parsedData = {};
   data.forEach(function(d) {
     var entries = [];
@@ -130,13 +134,15 @@ d3.csv("data_msp.csv", function(error, data) {
       entries.push(entry);
     });
     parsedData[d['RegionName']] = entries;
+    neighbourhoodMap[d['RegionName']] = d['City'];
   });
 
   var dataArray = color.domain().map(function(zip) { // Nest the data into an array of objects with new keys
     return {
       name: zip, // "name": the csv headers except date
       values: parsedData[zip],
-      visible: (zip == "98105" ? true : false) // "visible": all false except for economy which is true.
+      visible: (zip == "98105" ? true : false), // "visible": all false except for economy which is true.
+      neighbourhood: neighbourhoodMap[zip]
     };
   });
 
@@ -275,7 +281,7 @@ d3.csv("data_msp.csv", function(error, data) {
     zipcode.append("text")
       .attr("x", width + (margin.right/3) + 20) 
       .attr("y", function (d, i) { return (legendSpace)+i*(legendSpace); })  // (return (11.25/2 =) 5.625) + i * (5.625) 
-      .text(function(d) { return d.name; }); 
+      .text(function(d) { return d.name + " (" + d.neighbourhood + ") "; }); 
 
   // Hover line 
   var hoverLineGroup = svg.append("g").attr("class", "hover-line");
