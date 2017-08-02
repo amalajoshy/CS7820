@@ -28,9 +28,9 @@ var ySelectData = [ {"text": "HousingPrice" },
 var body = d3.select('body');
 console.log(body);
 
-var margin = { top: 50, right: 50, bottom: 50, left: 55 };
+var margin = { top: 50, right: 50, bottom: 50, left: 60 };
 var h = 500 - margin.top - margin.bottom;
-var w = 960 - margin.left - margin.right;
+var w = 1000 - margin.left - margin.right;
 
 // SVG
 var svg = body.append('svg')
