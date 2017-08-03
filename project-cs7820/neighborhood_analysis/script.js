@@ -163,7 +163,8 @@ d3.csv('neighborhood_data.csv',function (data) {
       })
     .append('title') // Tooltip
       .text(function (d) { return d.Neighborhood +
-                           '\nPopulation: ' + d['Population'] +
+                           '\nZipcode: ' + d['Zipcode'] +
+                           '\nPopulation: ' + d['Population'] + 
                            '\nPopulationDensity: ' + d['PopulationDensity'] +
                            '\nMedianHouseHoldIncome: ' + d['MedianHouseHoldIncome'] +
                            '\nMedianSchoolRating(10): ' + d['MedianSchoolRating'] +
