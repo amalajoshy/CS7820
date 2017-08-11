@@ -134,6 +134,20 @@ d3.csv('neighborhood_data.csv',function (data) {
     .orient('left')
   
 
+    function customColorMap(d) {
+        var neighborhood = d.Neighborhood;
+        if (neighborhood == 'Magnolia') {
+            return '#dea6bd';
+        } else if (neighborhood == 'Ravenna' || neighborhood == 'Wedgwood') {
+            return '#018080'
+        } else if (neighborhood == 'Madrona') {
+            return '#808001'
+        } else if (neighborhood == 'South Delridge') {
+            return '#8b1eb0'
+        }
+        return 'gray';
+    }
+
   // Circles
   circles
       .data(data)
@@ -144,7 +158,10 @@ d3.csv('neighborhood_data.csv',function (data) {
       .attr('cx',function (d) { return xScale(d['MedianHouseHoldIncome']) })
       .attr('cy',function (d) { return yScale(d['Zhvi']) })
       .attr('r','8')
-      .attr('fill',function (d,i) { return colorScale(i) })
+      .attr('fill',function (d,i) {
+          // return colorScale(i)
+          return customColorMap(d);
+      })
       .on('mouseover', function () {
         d3.select(this)
           .transition()
